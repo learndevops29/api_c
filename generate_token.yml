@@ -1,0 +1,26 @@
+---
+ - name: This playbook will generate token of control-m em LAB
+   hosts: ctm_em
+   vars:
+     unix_user: emservertest
+     user: emuser
+     pass: emuser
+   become: true
+   become_user: " {{ unix_user }} "
+   tasks:
+     - name: call AAPI to generate toke
+       uri:
+         url: "https://manitest.controlm.com:8443/automation-api/session/login"
+         method: POST
+         headers:
+           Content-Type: "Application/json"
+         body_format: json
+         body: "{ \"username\" : \"{{ user }}\" , \"password\" : \"{{ pass }}\" }"
+         validate_certs: no
+         return_content: yes
+         force: yes
+       register: bearer_token
+
+     - name: show AAPI outpt
+       debug:
+         var: bearer_token

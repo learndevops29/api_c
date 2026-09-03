@@ -1,0 +1,55 @@
+ - name: This playbook will update Quantitative Resource as per given parameters  control-m em LAB
+   hosts: ctm_em
+   become: true
+   become_user: " {{ unix_user }} "
+   vars:
+     unix_user: emservertest
+   tasks:
+     - name: call AAPI to generate toke
+       uri:
+         url: "https://manitest.controlm.com:8443/automation-api/session/login"
+         method: POST
+         headers:
+           Content-Type: "Application/json"
+         body_format: json
+         body: "{ \"username\" : \"emuser\" , \"password\" : \"emuser\" }"
+         validate_certs: no
+         return_content: yes
+         force: yes
+       register: bearer_token
+
+     - name: show AAPI outpt
+       debug:
+         var: bearer_token.json.token
+     - name: update the qr as per input using AAPI
+       uri:
+         url: "https://manitest.controlm.com:8443/automation-api/run/resource/{{ ctm_server }}/{{ qr_name }}"
+         method: POST
+         headers:
+           Authorization: "Bearer {{ bearer_token.json.token }}"
+           Content-Type: "Application/json"
+           Accept: "Application/json"
+           Annotation-Subject: " {{ Ticket }} "
+           Annotation-Description: "{{ Ticket }}"
+         body:
+            max: "{{ new_value }}"
+         body_format: json
+         return_content: yes
+         validate_certs: no
+         force: yes
+       register: qr_update_status
+     - name: show result
+       debug:
+         var: qr_update_status.json.message
+     - name: display current value of QR
+       uri:
+         url: "https://manitest.controlm.com:8443/automation-api/run/resources?ctm={{ ctm_server }}&name={{ qr_name }}"
+         method: GET
+         headers:
+           Authorization: "Bearer {{ bearer_token.json.token }}"
+         return_content: yes
+         validate_certs: no
+       register: qr_status
+     - name: show current status of QR {{ qr_name }} desired value was {{ new_value }} ticket is {{ Ticket }}
+       debug:
+         var: qr_status.json
