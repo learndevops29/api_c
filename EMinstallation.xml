@@ -1,0 +1,28 @@
+<AutomatedInstallation langpack="eng">
+    <target.product>Control-M/Enterprise Manager 9.0.22.000</target.product>
+    <database.vendor>
+        <entry value="Oracle" key="field.Selected.Database.Vendor.Type"/>
+    </database.vendor>
+    <em.parameters>
+        <entry value="8446" key="field.Tomcat.HTTPS.Port.Number"/>
+        <entry value="19092" key="field.Kafka.Port.Number"/>
+        <entry value="3994" key="field.Zookeeper.LE.Port.Number"/>
+        <entry value="18080" key="field.Tomcat.Service.Port.Number"/>
+        <entry value="2925" key="field.Zookeeper.Followers.Port.Number"/>
+        <entry value="12181" key="field.Zookeeper.Port.Number"/>
+    </em.parameters>
+    <dbo.dba.reuse.db>
+        <entry value="!!!XUfpFtYMZxX1sDxjnV2o0rfvdUqgIy++qA==" key="field.Database.Owner.Password"/>
+        <entry value="ctmemuser" key="field.Database.Owner.Login"/>
+    </dbo.dba.reuse.db>
+    <non.postgres.server.name>
+        <entry value="dbserver.manicorp.com" key="field.Oracle.Server.Host.Name"/>
+        <entry value="1521" key="field.Oracle.Listener.Port.Number"/>
+        <entry value="pdb1" key="field.Oracle.Database.Instance.Name"/>
+    </non.postgres.server.name>
+    <default.custom>
+        <entry value="true" key="is.custom.type.selected"/>
+        <entry value="false" key="is.default.type.selected"/>
+        <entry value="false" key="is.distributed.type.selected"/>
+    </default.custom>
+</AutomatedInstallation>

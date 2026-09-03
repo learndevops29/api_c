@@ -1,0 +1,30 @@
+<AutomatedInstallation langpack="eng">
+    <target.product>Control-M/Server 9.0.22.000</target.product>
+    <database.vendor>
+        <entry value="Oracle" key="field.Selected.Database.Vendor.Type"/>
+    </database.vendor>
+    <dbo.dba.reuse.db>
+        <entry value="!!!XUfpAM4KcQKTjKhSylJw9SkAgYe42L8j" key="field.Database.Owner.Password"/>
+        <entry value="ctmsuser" key="field.Database.Owner.Login"/>
+    </dbo.dba.reuse.db>
+    <ctm.server.parameters>
+        <entry value="2370" key="field.ControlMEM.Tcpip.Port.Number"/>
+        <entry value="19092" key="field.Kafka.Port.Number"/>
+        <entry value="6005" key="field.Inter.Process.Communication.Port.Number"/>
+        <entry value="2369" key="field.Configuration.Agent.Port.Number"/>
+        <entry value="7006" key="field.Server.To.Agent.Port.Number"/>
+        <entry value="workload.manicorp.com" key="field.Local.IP.Host.Interface.Name"/>
+        <entry value="7005" key="field.Agent.To.Server.Port.Number"/>
+        <entry value="8393" key="ctm_server.Api.Gateway.Port"/>
+        <entry value="12181" key="field.Zookeeper.Port.Number"/>
+    </ctm.server.parameters>
+    <non.postgres.server.name>
+        <entry value="dbserver.manicorp.com" key="field.Oracle.Server.Host.Name"/>
+        <entry value="1521" key="field.Oracle.Listener.Port.Number"/>
+        <entry value="pdb1" key="field.Oracle.Database.Instance.Name"/>
+    </non.postgres.server.name>
+    <default.custom>
+        <entry value="true" key="is.custom.type.selected"/>
+        <entry value="false" key="is.default.type.selected"/>
+    </default.custom>
+</AutomatedInstallation>
